@@ -1,0 +1,146 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-31 09:25:27
+ * @LastEditTime: 2022-03-31 10:31:31
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vite-vue3-tailwind-starter\test.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@3/lib/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vant@3/lib/vant.min.js"></script>
+</head>
+
+<body style="background: #EFF1F5">
+    <div id="app">
+        <div style="background: white; margin:20px;border-radius: 15px;padding: 15px;">
+            <div style="font-size: 19px;font-weight: 700;color: #000000;line-height: 24px;">每天推送时间</div>
+            <div style="border-bottom: 1px #EFF1F5 solid;padding: 12px 0;">
+                <label style="font-size:16px;
+line-height: 24px; display:flex;justify-content:space-between;" id="ts1">
+                    <span>每天推送时间:</span>
+                    <input type="radio" class="inputC" name="value" value="NO" id="i1">
+                </label>
+            </div>
+            <div style="border-bottom: 1px #EFF1F5 solid;padding: 12px 0;">
+                <label style="font-size:16px;
+            line-height: 24px; display:flex;justify-content:space-between;">
+                    <span>每天推送时间:</span>
+                    <input type="radio" class="inputC" name="value" value="NO" id="i2">
+                </label>
+            </div>
+            <div style="border-bottom: 1px #EFF1F5 solid;padding: 12px 0;">
+                <label style="font-size:16px;
+            line-height: 24px; display:flex;justify-content:space-between;">
+                    <span>每天推送时间:</span>
+                    <input type="radio" class="inputC" name="value" value="NO" id="i3">
+                </label>
+            </div>
+            <div style="border-bottom: 1px #EFF1F5 solid;padding: 12px 0;">
+                <label style="font-size:16px;
+            line-height: 24px; display:flex;justify-content:space-between;">
+                    <span>每天推送时间:</span>
+                    <input type="radio" class="inputC" name="value" value="NO" id="i4">
+                </label>
+            </div>
+            <div style="border-bottom: 1px #EFF1F5 solid;padding: 12px 0;">
+                <label style="font-size:16px;
+            line-height: 24px; display:flex;justify-content:space-between;">
+                    <span>每天推送时间:</span>
+                    <input type="radio" class="inputC" name="value" value="NO" id="i5">
+                </label>
+            </div>
+        </div>
+
+        <div id="save" style="margin:0 15px;
+            height:38px;
+            line-height:38px;
+            text-align:center;
+            background-color: #004DF1;
+            border-radius: 19px;
+            color:white;
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+        
+            ">
+            保存</div>
+
+    </div>
+</body>
+
+<script>
+    // 获取url 参数
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
+    }
+
+
+
+
+    function addEvents(target, type, func) {
+        if (target.addEventListener)    //非ie 和ie9
+            target.addEventListener(type, func, false);
+        else if (target.attachEvent)   //ie6到ie8
+            target.attachEvent("on" + type, func);
+        else target["on" + type] = func;   //ie5
+    };
+
+
+
+    addEvents(i1, 'click', function () {
+        chooseNumber(1)
+    });
+    addEvents(i2, 'click', function () {
+        chooseNumber(2)
+    });
+    addEvents(i3, 'click', function () {
+        chooseNumber(3)
+
+    })
+    addEvents(i4, 'click', function () {
+        chooseNumber(4)
+
+    })
+    addEvents(i5, 'click', function () {
+        chooseNumber(5)
+    })
+
+    addEvents(save, 'click', function () {
+        console.log("保存")
+        alert("保存成功")
+    })
+
+
+    function chooseNumber(number) {
+        console.log(number, 'number')
+
+    }
+
+
+    setTimeout(() => {
+        let a = '3';
+        a = Number(a);
+        let all = document.querySelectorAll('.inputC');
+        all[a].checked = 'true'
+        console.log(getQueryVariable('ap'))
+    }, 1000);
+
+</script>
+
+</html>

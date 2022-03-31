@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@3/lib/index.css" />
+</head>
+
+<style>
+    .van-cell>.van-cell__title>span {
+        font-size: 16px;
+    }
+
+    .title>.van-cell__title>span {
+        font-size: 19px;
+        font-weight: bold;
+    }
+</style>
+
+<body style="background:#EFF1F5">
+    <div id="app">
+        <div style="margin-top: 40px;">
+            <van-radio-group v-model="checked">
+                <van-cell-group inset>
+                    <van-cell title="每天推送时间" class="title"></van-cell>
+                    <van-cell :title="item.name" clickable @click="checked = item.checked"
+                        v-for="(item, index) in listChoice" :key="index">
+                        <template #right-icon>
+                            <van-radio :name="item.checked" />
+                        </template>
+                    </van-cell>
+                </van-cell-group>
+            </van-radio-group>
+        </div>
+
+        <div @click="toSave" style="margin:0 15px;
+                    height:38px;
+                    line-height:38px;
+                    text-align:center;
+                    background-color: #004DF1;
+                    border-radius: 19px;
+                    color:white;
+                    position: absolute;
+                    bottom: 40px;
+                    left: 0;
+                    right: 0;
+                    ">
+            保存</div>
+
+    </div>
+</body>
+<!-- 引入样式文件 -->
+
+<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@3/lib/vant.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<script>
+    // 在 #app 标签下渲染一个按钮组件
+    const app = Vue.createApp({
+        data() {
+            return {
+                // message: 'message'
+                checked: '-1',
+                listChoice: [
+                    { name: '每天1次(9点推送)', checked: '1' },
+                    { name: '每天2次(9点,12点推送)', checked: '2' },
+                    { name: '每天3次(9点,12点,18点推送)', checked: '3' },
+                    { name: '每天整点推送', checked: '4' },
+                ]
+            }
+        },
+
+        methods: {
+            toSave() {
+                axios.get('/user', {
+                    params: {
+                        ID: 12345
+                    }
+                })
+                    .then(function (response) {
+
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        vant.Toast('保存失败');
+                    });
+
+            }
+        },
+        mounted() {
+            // this.checked = '2';
+        },
+    });
+    app.use(vant);
+    app.mount('#app');
+</script>
+
+</html>
